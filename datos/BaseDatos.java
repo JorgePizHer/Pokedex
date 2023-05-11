@@ -7,6 +7,15 @@ import java.sql.Statement;
 
 public class BaseDatos {
 
+	/**
+	 * El metodo ejecutarSql actua como enlace con la base de datos para conectarse
+	 * a ella y poder ejecutar sentencias del tipo INSERT, UPDATE y DELETE
+	 * 
+	 * @author Jorge Pizarro
+	 * @param sql Texto correspondiente a la sentencia en cuestion
+	 * @version 1.2
+	 */
+
 	public static void ejecutarSql(String sql) {
 
 		Connection conexion = null;
