@@ -27,14 +27,13 @@ public class Principal {
 				System.out.println("");
 
 			} while (seleccion > 0 || seleccion < 5); // Bucle do/while para que el menú inicial se muestre después de
-														// cada acción automáticamente y que el programa no se cierra
+														// cada acción automáticamente y que el programa no se cierre
 														// salvo que así lo especifique el usuario
 
 		} catch (Exception e) {
 			System.out.println("Error desconocido. Pruebe otra vez.");
 		}
-		
-		
+
 	}
 
 }

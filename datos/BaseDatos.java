@@ -7,27 +7,24 @@ import java.sql.Statement;
 
 public class BaseDatos {
 
-public static void ejecutarSql(String sql) {
-		
-		
-		
+	public static void ejecutarSql(String sql) {
+
 		Connection conexion = null;
 		Statement sentenciaSQL = null;
-		int resultado=0;
+		int resultado = 0;
 
 		try {
 			// conectar con la base de datos
 			Class.forName("com.mysql.jdbc.Driver");
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost/pokemon", "root", "");// proporcionamos
-																										// la
-																										// dirección, el
-																										// administrador
-																										// y
-																										// la clave
+																									// la
+																									// dirección, el
+																									// administrador
+																									// y
+																									// la clave
 
 			// creamos sentencias ejecutables sobre esa conexión
 			sentenciaSQL = conexion.createStatement();
-
 
 			resultado = sentenciaSQL.executeUpdate(sql);
 
@@ -53,8 +50,7 @@ public static void ejecutarSql(String sql) {
 		}
 
 		System.out.println("Conectado/desconectado");
-		
+
 	}
-	
-	
+
 }
