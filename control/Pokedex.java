@@ -33,6 +33,27 @@ public class Pokedex {
 		return "Pokedex [pokedex=" + pokedex + "]";
 	}
 
+	/**
+	 * 
+	 * En el metodo gestionarAccion, segun la seleccion del usuario en el menu, se
+	 * ejecuta el metodo asociado a dicha seleccion.
+	 * 
+	 * @author Jorge Pizarro
+	 * @param seleccion El case del switch que se ejecutara, que se corresponde con
+	 *                  la opcion del menu seleccionada por el usuario.
+	 * @param nombre    Nombre de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @param numero    Numero en la Pokedex de cada uno de los pokemon que se
+	 *                  guardan como objetos en la lista pokedex
+	 * @param tipo      Tipo de cada uno de los pokemon que se guardan como objetos
+	 *                  en la lista pokedex
+	 * @param habilidad Habilidad de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * 
+	 * @return La opcion del menu que elige el usuario
+	 * @version 1.2
+	 */
+
 	public int gestionarAccion(int seleccion, String nombre, int numero, String tipo, String habilidad) {
 
 		try {
@@ -62,20 +83,57 @@ public class Pokedex {
 		return seleccion;
 	}
 
-	public void nuevaEntradaPokedex(String nombre, int numero, String tipo, String habilidad) {
+	/**
+	 * Se comunica con el metodo addPokemon de la clase PedirDatos para almacenar
+	 * los datos que introduce el usuario en un nuevo objeto de la clase Pokemon
+	 * para posteriormente añadir el objeto a la lista pokedex y agregar los datos a
+	 * la base de datos
+	 * 
+	 * @author Jorge Pizarro
+	 * 
+	 * @param nombre    Nombre de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @param numero    Numero en la Pokedex de cada uno de los pokemon que se
+	 *                  guardan como objetos en la lista pokedex
+	 * @param tipo      Tipo de cada uno de los pokemon que se guardan como objetos
+	 *                  en la lista pokedex
+	 * @param habilidad Habilidad de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @version 1.2
+	 */
 
-		Pokemon miPokemon = PedirDatos.addPokemon(nombre, numero, tipo, habilidad); // Creación de un nuevo objeto de la
-																					// clase Pokemon para así poder
-																					// almacenar los datos que introduce
-																					// el usuario y volcarlos
-																					// posteiormente a la BD
+	public void nuevaEntradaPokedex(String nombre, int numero, String tipo,
+			String habilidad) { /*
+								 * Creación de un nuevo objeto de la clase Pokemon para así poder almacenar los
+								 * datos que introduce el usuario y volcarlos posteiormente a la BD
+								 */
 
+		Pokemon miPokemon = PedirDatos.addPokemon(nombre, numero, tipo, habilidad);
 		pokedex.add(miPokemon);
 		System.out.println(pokedex.toString());
 		String sql = MetodosSql.insertarPokemon(miPokemon);
 		BaseDatos.ejecutarSql(sql);
 
 	}
+
+	/**
+	 * Se comunica con el metodo modificarDatosPokemon de la clase PedirDatos para
+	 * almacenar los datos que introduce el usuario en un nuevo objeto de la clase
+	 * Pokemon para posteriormente añadir el objeto a la lista pokedex y actualizar
+	 * la entrada correspondiente de la base de datos
+	 * 
+	 * @author Jorge Pizarro
+	 * 
+	 * @param nombre    Nombre de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @param numero    Numero en la Pokedex de cada uno de los pokemon que se
+	 *                  guardan como objetos en la lista pokedex
+	 * @param tipo      Tipo de cada uno de los pokemon que se guardan como objetos
+	 *                  en la lista pokedex
+	 * @param habilidad Habilidad de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @version 1.2
+	 */
 
 	public void modificarEntradaPokedex(String nombre, int numero, String tipo, String habilidad) {
 
@@ -85,12 +143,30 @@ public class Pokedex {
 
 	}
 
+	/**
+	 * En este metodo se le permite al usuario buscar por cualquier tipo de campo
+	 * que tenga la tabla pokedex de la base de datos y posteriormente se muestran
+	 * los datos correspondientes a la consulta del usuario
+	 * 
+	 * @author Jorge Pizarro
+	 * 
+	 * @param nombre    Nombre de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @param numero    Numero en la Pokedex de cada uno de los pokemon que se
+	 *                  guardan como objetos en la lista pokedex
+	 * @param tipo      Tipo de cada uno de los pokemon que se guardan como objetos
+	 *                  en la lista pokedex
+	 * @param habilidad Habilidad de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @version 1.2
+	 */
+
 	public void buscarEntradaPokedex(String nombre, int numero, String tipo,
 			String habilidad) { /*
 								 * Para buscar y eliminar, a diferencia de para insertar y modificar, no es
 								 * necesario almacenar datos en un objeto, puesto que estos son datos que ya
-								 * están previamente en la base de datos y bien se muestran o se eliminan, pero no se introducen
-								 * nuevos datos ni se modifican
+								 * están previamente en la base de datos y bien se muestran o se eliminan, pero
+								 * no se introducen nuevos datos ni se modifican
 								 */
 
 		int seleccion;
@@ -154,6 +230,23 @@ public class Pokedex {
 			System.out.println("Error desconocido, pruebe otra vez");
 		}
 	}
+
+	/**
+	 * Este metodo permite al usuario eliminar un elemento de la base de datos,
+	 * filtrando por el campo nombre
+	 * 
+	 * @author Jorge Pizarro
+	 * 
+	 * @param nombre    Nombre de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @param numero    Numero en la Pokedex de cada uno de los pokemon que se
+	 *                  guardan como objetos en la lista pokedex
+	 * @param tipo      Tipo de cada uno de los pokemon que se guardan como objetos
+	 *                  en la lista pokedex
+	 * @param habilidad Habilidad de cada uno de los pokemon que se guardan como
+	 *                  objetos en la lista pokedex
+	 * @version 1.2
+	 */
 
 	public void eliminarEntradaPokedex(String nombre, int numero, String tipo, String habilidad) {
 

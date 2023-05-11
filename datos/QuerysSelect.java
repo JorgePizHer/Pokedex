@@ -8,6 +8,15 @@ import java.sql.Statement;
 
 public class QuerysSelect {
 
+	/**
+	 * El metodo ejecutarQuerys actua como enlace con la base de datos para
+	 * conectarse a ella y poder ejecutar consultas del tipo SELECT
+	 * 
+	 * @author Jorge Pizarro
+	 * @param sql Texto correspondiente a la consulta en cuestion
+	 * @version 1.2
+	 */
+
 	public static void ejecutarQuerys(String sql) {
 
 		Connection conexion = null;
